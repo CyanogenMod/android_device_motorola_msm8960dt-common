@@ -627,12 +627,12 @@ SectionVerb
 	Name "Voice Call"
 
 	EnableSequence
-		'MI2S_RX_Voice Mixer CSVoice':1:1
+		'SLIM_0_RX_Voice Mixer CSVoice':1:1
 		'Voice_Tx Mixer SLIM_0_TX_Voice':1:1
 	EndSequence
 
 	DisableSequence
-		'MI2S_RX_Voice Mixer CSVoice':1:0
+		'SLIM_0_RX_Voice Mixer CSVoice':1:0
 		'Voice_Tx Mixer SLIM_0_TX_Voice':1:0
 	EndSequence
 
@@ -4014,12 +4014,12 @@ SectionModifier
 	Name "Play Voice"
 
 	EnableSequence
-		'MI2S_RX_Voice Mixer CSVoice':1:1
+		'SLIM_0_RX_Voice Mixer CSVoice':1:1
 		'Voice_Tx Mixer SLIM_0_TX_Voice':1:1
 	EndSequence
 
 	DisableSequence
-		'MI2S_RX_Voice Mixer CSVoice':1:0
+		'SLIM_0_RX_Voice Mixer CSVoice':1:0
 		'Voice_Tx Mixer SLIM_0_TX_Voice':1:0
 	EndSequence
 
