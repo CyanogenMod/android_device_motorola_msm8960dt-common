@@ -1783,11 +1783,11 @@ SectionVerb
 	Name "HiFi Lowlatency"
 
 	EnableSequence
-		'SLIMBUS_0_RX Audio Mixer MultiMedia5':1:1
+		'MI2S_RX Audio Mixer MultiMedia5':1:1
 	EndSequence
 
 	DisableSequence
-		'SLIMBUS_0_RX Audio Mixer MultiMedia5':1:0
+		'MI2S_RX Audio Mixer MultiMedia5':1:0
 	EndSequence
 
 	# ALSA PCMs
@@ -2167,7 +2167,7 @@ SectionDevice
 
 	ACDBID	14:1
 	EffectsMixerCTL "SRS TruMedia"
-	EC_REF_RXMixerCTL "SLIM_RX"
+	EC_REF_RXMixerCTL "MI2S_RX"
 
 EndSection
 
