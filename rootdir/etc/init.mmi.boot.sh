@@ -106,3 +106,9 @@ if [ "$need_cleanup" == "1" ]; then
 	rmmod utags.ko
 fi
 unset utags_module
+
+# Thermald
+device=$(getprop ro.boot.device)
+ln -s /etc/thermald-${device}.conf /dev/thermald.conf
+start thermald
+unset device

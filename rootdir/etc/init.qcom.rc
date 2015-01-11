@@ -107,10 +107,6 @@ on fs
 
     setprop ro.crypto.fuse_sdcard true
 
-on post-fs
-    # Link thermald
-    symlink /etc/thermald-msm8960dt.conf /dev/thermald.conf
-
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -659,6 +655,7 @@ service thermald /system/bin/thermald
     class main
     user root
     group root
+    disabled
 
 service time_daemon /system/bin/time_daemon
     class late_start
