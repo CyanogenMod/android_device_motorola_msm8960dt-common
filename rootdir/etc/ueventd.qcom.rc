@@ -208,8 +208,9 @@
 
 # NFC permissions
 /dev/pn544                0660  nfc          nfc
+
 # Sensors
-/dev/msp430               0660  system     compass
+/dev/msp430               0666  system     compass
 /dev/msp430_as            0660  compass    compass
 /dev/msp430_ms            0660  compass    compass
 
