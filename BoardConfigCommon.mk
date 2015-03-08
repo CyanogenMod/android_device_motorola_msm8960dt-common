@@ -132,7 +132,8 @@ BOARD_SEPOLICY_UNION += \
     servicemanager.te \
     system_app.te \
     thermal-engine.te \
-    ueventd.te
+    ueventd.te \
+    vold.te
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
