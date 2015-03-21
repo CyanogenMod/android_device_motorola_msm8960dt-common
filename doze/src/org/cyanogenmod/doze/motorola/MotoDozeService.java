@@ -99,6 +99,7 @@ public class MotoDozeService extends Service {
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
         mContext.registerReceiver(mScreenStateReceiver, screenStateFilter);
+        mCameraActivationSensor.enable();
         return START_STICKY;
     }
 
@@ -180,7 +181,6 @@ public class MotoDozeService extends Service {
         if (isDozeEnabled()) {
             mStowSensor.disable();
             mFlatDownSensor.disable();
-            mCameraActivationSensor.disable();
         }
     }
 
