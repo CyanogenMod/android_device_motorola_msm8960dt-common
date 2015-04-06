@@ -62,7 +62,7 @@ public class MotoDozeService extends Service {
     private boolean mCameraGestureEnabled = false;
     private boolean mPickUpGestureEnabled = false;
 
-    private MotoSensor.MotoSensorListener mListener = new MotoSensor.MotoSensorListener() {
+    private MotoSensorListener mListener = new MotoSensorListener() {
         @Override
         public void onEvent(int sensorType, SensorEvent event) {
             if (DEBUG) Log.d(TAG, "Got sensor event: " + event.values[0] + " for type " + sensorType);

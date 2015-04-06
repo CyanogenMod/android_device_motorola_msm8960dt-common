@@ -51,10 +51,6 @@ public class MotoSensor {
     protected static native void native_enableWakeSensor(int wakeSensor);
     protected static native void native_disableWakeSensor(int wakeSensor);
 
-    public interface MotoSensorListener {
-        public void onEvent(int sensorType, SensorEvent event);
-    }
-
     public MotoSensor(Context context, int type) {
         mContext = context;
         mType = type;
