@@ -40,7 +40,7 @@ import android.util.Log;
 
 public class MotoDozeService extends Service {
 
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final String TAG = "MotoDozeService";
 
     private static final String DOZE_INTENT = "com.android.systemui.doze.pulse";
@@ -52,8 +52,7 @@ public class MotoDozeService extends Service {
     private static final int MIN_PULSE_INTERVAL_MS = 10000;
 
     private Context mContext;
-    private MotoSensor mFlatUpSensor;
-    private MotoSensor mFlatDownSensor;
+    private FlatSensor mFlatSensor;
     private MotoSensor mStowSensor;
     private MotoSensor mCameraActivationSensor;
     private WakeLock mSensorWakeLock;
@@ -68,11 +67,8 @@ public class MotoDozeService extends Service {
             if (DEBUG) Log.d(TAG, "Got sensor event: " + event.values[0] + " for type " + sensorType);
 
             switch (sensorType) {
-                case MotoSensor.SENSOR_TYPE_MMI_FLAT_UP:
-                    handleFlatUp(event);
-                    break;
-                case MotoSensor.SENSOR_TYPE_MMI_FLAT_DOWN:
-                    handleFlatDown(event);
+                case FlatSensor.SENSOR_TYPE_COMPOSITE_FLAT:
+                    handleFlat(event);
                     break;
                 case MotoSensor.SENSOR_TYPE_MMI_STOW:
                     handleStow(event);
@@ -89,12 +85,10 @@ public class MotoDozeService extends Service {
         if (DEBUG) Log.d(TAG, "Creating service");
         super.onCreate();
         mContext = this;
-        mFlatUpSensor = new MotoSensor(mContext, MotoSensor.SENSOR_TYPE_MMI_FLAT_UP);
-        mFlatUpSensor.registerListener(mListener);
-        mFlatDownSensor = new MotoSensor(mContext, MotoSensor.SENSOR_TYPE_MMI_FLAT_DOWN);
-        mFlatDownSensor.registerListener(mListener);
         mStowSensor = new MotoSensor(mContext, MotoSensor.SENSOR_TYPE_MMI_STOW);
         mStowSensor.registerListener(mListener);
+        mFlatSensor = new FlatSensor(mContext);
+        mFlatSensor.registerListener(mListener);
         mCameraActivationSensor = new MotoSensor(mContext, MotoSensor.SENSOR_TYPE_MMI_CAMERA_ACTIVATION);
         mCameraActivationSensor.registerListener(mListener);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -118,7 +112,7 @@ public class MotoDozeService extends Service {
         if (DEBUG) Log.d(TAG, "Destroying service");
         super.onDestroy();
         mCameraActivationSensor.disable();
-        mFlatDownSensor.disable();
+        mFlatSensor.disable();
     }
 
     @Override
@@ -161,15 +155,9 @@ public class MotoDozeService extends Service {
         return mCameraGestureEnabled;
     }
 
-    private void handleFlatUp(SensorEvent event) {
+    private void handleFlat(SensorEvent event) {
         /* FlatUp is 0 when vertical */
         /* FlatUp is 1 when horizontal */
-        if (event.values[0] == 0) {
-            launchDozePulse();
-        }
-    }
-
-    private void handleFlatDown(SensorEvent event) {
         /* FlatDown is 0 when vertical */
         if (event.values[0] == 0) {
             launchDozePulse();
@@ -181,14 +169,14 @@ public class MotoDozeService extends Service {
 
         if (isStowed) {
             if (isPickUpEnabled()) {
-                mFlatDownSensor.disable();
+                mFlatSensor.disable();
             }
             if (isCameraEnabled()) {
                 mCameraActivationSensor.disable();
             }
         } else {
             if (isPickUpEnabled()) {
-                mFlatDownSensor.enable();
+                mFlatSensor.enable();
             }
             if (isCameraEnabled()) {
                 mCameraActivationSensor.enable();
@@ -213,7 +201,7 @@ public class MotoDozeService extends Service {
             mCameraActivationSensor.enable();
         }
         if (isPickUpEnabled()) {
-            mFlatDownSensor.disable();
+            mFlatSensor.disable();
         }
     }
 

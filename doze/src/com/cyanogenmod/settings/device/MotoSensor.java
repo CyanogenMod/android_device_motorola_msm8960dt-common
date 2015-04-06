@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MotoSensor {
 
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final String TAG = "MotoSensor";
 
     public static final int SENSOR_TYPE_MMI_FLAT_UP = 34;
