@@ -431,6 +431,10 @@ on boot
     # Change permissions for vibrator enable
     chmod 0660 /sys/class/timed_output/vibrator/enable
 
+    # PCC
+    chown root system /sys/devices/virtual/graphics/fb0/rgb
+    chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
+
     chmod 0660   /sys/class/graphics/fb0/acl_mode
     chown system system  /sys/class/graphics/fb0/acl_mode
 

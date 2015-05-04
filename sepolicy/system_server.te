@@ -1,0 +1,2 @@
+allow system_server pcc_sysfs:dir search;
+allow system_server pcc_sysfs:file rw_file_perms;
