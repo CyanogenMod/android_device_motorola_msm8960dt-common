@@ -71,6 +71,9 @@ BLUETOOTH_HCI_USE_MCT := true
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 
+# CMHW
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
@@ -133,6 +136,7 @@ BOARD_SEPOLICY_UNION += \
     rmt_storage.te \
     servicemanager.te \
     system_app.te \
+    system_server.te \
     thermal-engine.te \
     ueventd.te
 
