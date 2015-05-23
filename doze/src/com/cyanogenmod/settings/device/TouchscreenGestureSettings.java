@@ -19,14 +19,32 @@ package com.cyanogenmod.settings.device;
 import com.android.internal.util.cm.ScreenType;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
 
 public class TouchscreenGestureSettings extends PreferenceActivity {
+
+    private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
+    private static final String CATEGORY_AMBIENT_DISPLAY = "ambient_display_key";
+
+    private SwitchPreference mAmbientDisplayPreference;
+    private PreferenceCategory mAmbientDisplayCategory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.gesture_panel);
+        mAmbientDisplayCategory =
+            (PreferenceCategory) findPreference(CATEGORY_AMBIENT_DISPLAY);
+        mAmbientDisplayCategory.setEnabled(isDozeEnabled());
+        mAmbientDisplayPreference =
+            (SwitchPreference) findPreference(KEY_AMBIENT_DISPLAY_ENABLE);
+        // Re-write actual DOZE_ENABLED secure setting
+        mAmbientDisplayPreference.setChecked(isDozeEnabled());
+        mAmbientDisplayPreference.setOnPreferenceChangeListener(mAmbientDisplayPrefListener);
     }
 
     @Override
@@ -38,4 +56,26 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
             getListView().setPadding(0, 0, 0, 0);
         }
     }
+
+    private boolean enableDoze(boolean enable) {
+        return Settings.Secure.putInt(getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, enable ? 1 : 0);
+    }
+
+    private boolean isDozeEnabled() {
+        return Settings.Secure.getInt(getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, 1) != 0;
+    }
+
+    private Preference.OnPreferenceChangeListener mAmbientDisplayPrefListener =
+        new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            boolean enable = (boolean) newValue;
+            boolean ret = enableDoze(enable);
+            if (ret)
+                mAmbientDisplayCategory.setEnabled(enable);
+            return ret;
+        }
+    };
 }
