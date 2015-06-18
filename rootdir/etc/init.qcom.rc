@@ -513,7 +513,7 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
 on property:vold.decrypt=trigger_restart_framework
     start config_bluetooth
 
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh
+service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
     user root
     oneshot
