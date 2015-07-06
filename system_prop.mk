@@ -1,6 +1,8 @@
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    lpa.decode=true
+    lpa.decode=true \
+    tunne.audiovideo.decode=true \
+    tunnel.decode=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.mode=endfire \
