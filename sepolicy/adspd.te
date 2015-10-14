@@ -8,3 +8,6 @@ allow adspd input_device:chr_file { open read ioctl };
 allow adspd sysfs_adspd:file { open read write };
 allow adspd system_data_file:dir { search write add_name };
 allow adspd system_data_file:file { read write };
+
+allow adspd adspd_prop:property_service set;
+unix_socket_connect(adspd, property, init)
