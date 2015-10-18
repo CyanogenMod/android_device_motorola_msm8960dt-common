@@ -20,6 +20,7 @@ import com.android.internal.util.cm.ScreenType;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
@@ -32,10 +33,12 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
     private static final String KEY_AMBIENT_DISPLAY_ENABLE = "ambient_display_enable";
     private static final String KEY_GESTURE_PICK_UP = "gesture_pick_up";
     private static final String KEY_HAND_WAVE = "gesture_hand_wave";
+    private static final String KEY_FLASH_LIGHT = "gesture_flashlight";
 
     private SwitchPreference mAmbientDisplayPreference;
     private SwitchPreference mPickupPreference;
     private SwitchPreference mHandwavePreference;
+    private SwitchPreference mFlashlightPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,13 @@ public class TouchscreenGestureSettings extends PreferenceActivity {
         mHandwavePreference =
             (SwitchPreference) findPreference(KEY_HAND_WAVE);
         mHandwavePreference.setEnabled(dozeEnabled);
+
+        mFlashlightPreference =
+            (SwitchPreference) findPreference(KEY_FLASH_LIGHT);
+        // Obake doesn't support chop chop gesture until it gets official 5.1
+        if (!"ghost".equals(SystemProperties.get("ro.boot.device", ""))) {
+            mFlashlightPreference.setEnabled(false);
+        }
 
         final ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
