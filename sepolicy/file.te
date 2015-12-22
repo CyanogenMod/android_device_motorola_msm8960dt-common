@@ -1,5 +1,6 @@
 # ADSPD
 type adspd_device, dev_type;
+type adspd_data_file, file_type, data_file_type;
 type sysfs_adspd, fs_type, sysfs_type;
 
 # Battery health
