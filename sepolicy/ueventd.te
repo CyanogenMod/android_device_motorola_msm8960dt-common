@@ -1,1 +1,1 @@
-allow ueventd persist_file:lnk_file read;
+allow ueventd persist_wifi_file:file r_file_perms;
