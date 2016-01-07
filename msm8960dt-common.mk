@@ -83,7 +83,8 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8960
+    camera.msm8960 \
+    libshim_qcopt
 
 # CRDA
 PRODUCT_PACKAGES += \
