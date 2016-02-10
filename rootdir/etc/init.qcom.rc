@@ -42,8 +42,11 @@ on early-init
     # Create persist mount point
     mkdir /persist 0771 system system
 
-    # Symbols required for motorola blobs
-    export LD_SHIM_LIBS "/system/lib/libqc-opt.so|libshim_qcopt.so"
+    # Symbols required for Adreno
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
+
+    # Symbols required for Motorola blobs
+    export LD_SHIM_LIBS "/system/lib/liblog.so|libshim_log.so:/system/lib/libqc-opt.so|libshim_qcopt.so"
 
     symlink /data/tombstones /tombstones
 

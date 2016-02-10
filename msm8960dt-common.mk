@@ -85,6 +85,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.msm8960
 
+# Compat
+PRODUCT_PACKAGES += \
+    libboringssl-compat \
+    libshim_log \
+    libshim_qcopt \
+    libstlport
+
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8960 \
@@ -146,10 +153,6 @@ PRODUCT_PACKAGES += \
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8960
-
-# Qualcomm
-PRODUCT_PACKAGES += \
-    libshim_qcopt
 
 # Ramdisk
 PRODUCT_PACKAGES += \
