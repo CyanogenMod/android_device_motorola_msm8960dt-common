@@ -104,11 +104,6 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8960
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    libjni_motoSensor \
-    MotoDoze
-
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
