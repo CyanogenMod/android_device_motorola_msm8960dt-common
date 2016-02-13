@@ -223,7 +223,6 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
     start batt_health
-    exec /system/bin/sh /system/etc/moto_com.sh
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -681,8 +680,9 @@ on start-charging
     chown mot_pwric mot_pwric /sys/devices/platform/msm_ssbi.0/pm8921-core/pm8921-charger/force_chg_usb_suspend
     chown mot_pwric mot_pwric /sys/devices/platform/msm_ssbi.0/pm8921-core/pm8921-charger/force_chg_fail_clear
     start batt_health
+    start charge_only_mode
 
-    # Prepare for charger mode
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu1/online 0
-
+service charge_only_mode /system/bin/charge_only_mode
+    user root
+    group graphics system input
+    disabled
