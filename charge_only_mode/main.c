@@ -48,7 +48,7 @@ void power_event(int update_leds);
 #define ANIMATION_TIMEOUT (1000 / 2)
 #define POWERUP_VOLTAGE 3600000
 
-#define FS_PATH "/data/chargeonlymode"
+#define FS_PATH "/data/com/chargeonlymode"
 /* The follow two funcs are used to handle kpanic and wdreset case in COM */
 int save_mode(const char *path)
 {
