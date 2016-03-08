@@ -40,11 +40,6 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/interactive/target_load 90
     write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 30000
 
-    write /sys/module/cpu_boost/parameters/boost_ms 20
-    write /sys/module/cpu_boost/parameters/sync_threshold 1566000
-    write /sys/module/cpu_boost/parameters/input_boost_freq 1458000
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-
     rm /data/system/default_values
 
     start mpdecision
