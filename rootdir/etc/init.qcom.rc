@@ -101,9 +101,6 @@ on post-fs-data
     mkdir /data/fota 0771
     chown system system /data/fota
 
-    # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
-
     mkdir /data/audio/ 0770 media audio
 
     #Create directories for sensors
@@ -527,10 +524,12 @@ service thermald /system/bin/thermald
     user root
     group root
 
-service time_daemon /system/bin/time_daemon
+service timekeep /system/bin/timekeep restore
     class late_start
     user root
     group root
+    oneshot
+    seclabel u:r:timekeep:s0
 
 service wcnss_trigger /system/bin/sh /system/etc/init.qcom.wifi.sh ${ro.serialno}
     class main

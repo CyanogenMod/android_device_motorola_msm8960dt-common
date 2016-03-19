@@ -69,3 +69,6 @@
 # WiFi
 /persist/WCNSS_qcom_wlan.*                                                          u:object_r:persist_wifi_file:s0
 /system/etc/init\.qcom\.wifi\.sh                                                    u:object_r:wcnss_service_exec:s0
+
+#Sony timekeep
+/system/bin/timekeep                                                                u:object_r:timekeep_exec:s0
