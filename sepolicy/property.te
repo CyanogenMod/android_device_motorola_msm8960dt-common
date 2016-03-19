@@ -4,3 +4,6 @@ type mmi_boot_prop, property_type;
 # Motorola service properties
 type adspd_prop, property_type;
 type atvc_prop, property_type;
+
+# Sony timekeep
+type timekeep_prop, property_type;
