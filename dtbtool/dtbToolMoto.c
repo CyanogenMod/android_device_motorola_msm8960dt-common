@@ -100,9 +100,8 @@ int main(int argc, char** argv)
 
 		if (!dtb_file)
 		{
-			fclose(out_file);
 			fprintf(stderr, "Cannot open %s for reading!\n", input_dtb[i]);
-			return 1;
+			continue;
 		}
 
 		file_size = copy_file(dtb_file, out_file);
