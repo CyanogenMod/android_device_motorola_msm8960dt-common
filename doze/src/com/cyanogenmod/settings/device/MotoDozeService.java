@@ -243,7 +243,12 @@ public class MotoDozeService extends Service {
 
     private void handleFlashlightActivation() {
         Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(500);
+        if (!mTorchEnabled) {
+            long[] mFlashlightVibrate = {0,200,100,400};
+            v.vibrate(mFlashlightVibrate, -1);
+        } else {
+            v.vibrate(300);
+        }
         launchFlashlight();
     }
 
