@@ -27,7 +27,7 @@
     <string name="hand_wave_gesture_title">Ondear</string>
     <string name="hand_wave_gesture_summary">Mostrar notificaciones al ondear</string>
 
-    <string name="shortcut_gestures_title">Acceso directo gestuales</string>
+    <string name="shortcut_gestures_title">Accesos directos gestuales</string>
 
     <string name="camera_gesture_title">Cámara</string>
     <string name="camera_gesture_summary">Agita para activar</string>
